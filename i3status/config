@@ -1,0 +1,86 @@
+# i3status configuration
+
+general {
+    colors = true
+    output_format=i3bar
+    interval = 30
+}
+
+#order += "cpu_temperature 0"
+#order += "cpu_usage"
+order += "battery 0"
+#order += "ipv6"
+#order += "disk /"
+#order += "disk /home"
+#order += "run_watch DHCP"
+#order += "run_watch VPN"
+order += "wireless wlan"
+order += "ethernet eth"
+order += "load"
+order += "volume master"
+order += "tztime local"
+
+wireless wlan {
+    format_up = "WIFI:%ip@%essid-%quality"
+    format_down = "WIFI-OFF"
+}
+
+ethernet eth {
+    # if you use %speed, i3status requires root privileges
+    format_up = "%ip (%speed)"
+    format_down = "Ethernet-OFF"
+}
+
+battery 0 {
+    format = "%status %percentage %remaining %emptytime"
+    format_down = "No Battery"
+    status_chr = "🔌CHR"
+    status_bat = "🔋BAT"
+    status_unk = "?UNKOWN"
+    status_full = "🔌FULL"
+    path = 	"/sys/class/power_supply/BAT%d/uevent"
+    low_threshold = 20
+    threshold_type= time
+}
+
+run_watch DHCP {
+    pidfile = "/var/run/dhclient*.pid"
+}
+
+run_watch VPN {
+    pidfile = "/var/run/vpnc/pid"
+}
+
+tztime local {
+    format = "⏲%Y-%m-%d %H:%M"
+}
+
+load {
+    format = "%5min"
+}
+
+disk "/" {
+    format = "Root:%avail"
+}
+
+disk "/home" {
+    format = "Home:%avail"
+}
+
+cpu_temperature 0 {
+    format = "CPU %degrees°C"
+    max_threshold = 60
+    path = "/sys/class/thermal/thermal_zone0/temp"
+}
+
+cpu_usage {
+    format = "%usage"
+}
+
+volume master {
+    format = "🔊%volume"
+    format_muted = "🔇muted"
+    device = "default"
+    mixer = "Master"
+    mixer_idx = 0
+}
