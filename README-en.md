@@ -18,26 +18,38 @@
 - optional
 
   - `xcompmgr`   --  terminal transparent
+
   - `scrot`  -- for screeshot (this configuration added shortcut for scrot)
-  - `pcmanfm`  -- a gui file manager
+
+  - `thunar` or `pcmanfm`  -- a gui file manager
+
    - for `networkmanager` user
       - `nm-connection-editor`   -- networkmanager GUI
       - `nm-applet`  -- networkmanager's tray icon
-  - for laptop  user
-    - `mate-power-manager`  -- power manager tool  
-    - `alsa-utils`  -- adjust volume
+
+  - `blueman`  bluetooth gui tool
+
+      include a applet `blueman-applet`
+
+  - `mate-power-manager`  -- power manager tool
+
+  - `alsa-utils`  -- adjust volume
+
+  - `xfce4-appfinder`   an application finder
 
 ## configure i3
 
 - Downlod this config and extra ,  put `i3` and `i3status` in`~/.config/` , put `Pictures`(contains some sample wallpapers) in home folder (`~/`).If you want display tray icon , Perhaps you should read the chapter -- ["tray icons"](#tray icons).
 
+  optional: exec `config-en.sh` for some basic configuration.
+
 or 
 
 - execute this command:
 
-```shell
-curl -# -L -o i3.zip https://github.com/levinit/i3wm-config/archive/master.zip && unzip i3.zip && cd i3wm-config-master && cp i3 i3status -t ~/.config -r && cp Pictures ~/ -r && ./config-en.sh
-```
+  ```shell
+  curl -# -L -o i3.zip https://github.com/levinit/i3wm-config/archive/master.zip && unzip i3.zip && cd i3wm-config-master && unzip Pictures.zip && cp -r i3 ~/.config && cp -r Pictures ~/ && chmod +x *.sh && ./config.sh
+  ```
 
 If it show `xrandr: command not found` , install `xorg-xrandr` , then excute commands above again.
 
@@ -45,64 +57,90 @@ If it show `xrandr: command not found` , install `xorg-xrandr` , then excute com
 
 some info about these config files.
 
+
+
 ## shortcuts
-List some shortcut keys that have been changed.
+In configuration, `$mod key` is `Mod4`，**Generally** ,it is "Windows logo" key  or "Super" key, `Alt` is `mod1`, Enter is `Return`.
 
-`$mod key` is `Mod4`，**Generally** ,it is "Windows logo" key  or "Super" key or "Meta" key.
+Tip:Install `xorg-xev`, exec command `xev` in terminal, then press key, it will show the name.
+
+- `Super`+`d`  dmenu
+- `Super`+`Enter`  open default [terminal](#terminal)
+
+For other i3wm default shortcuts , see the  **i3wm related documentation** or view the config file.
+
+---
 
 
-- screenshot (full screen) 
 
-    `$mod+PrtSc`（"PrtSc" is "PrintScreen" key , need `scrot`）。
+The following are the custom shortcuts in this configuration file(Reference vim and windows usage habits).
 
-- open filemanager 
+- `Super`  temporary display the i3bar
+- `Super`+`m`  toggle i3bar show/hideen mode
 
-    `$mod+e` (need `pcmanfm`)
+- xfce dropdown terminal  `Alt`+`/`
 
-- close window 
+  if your default terminal is xfce-terminal
 
-    `Alt+F4` (generally , "Alt" is  `mod1` )
+- xfce4-appfinder  `Super`+`a`
 
-- hide window and show the hide window 
+  need install the application
 
-    `$mod+minus` and `mod+plus` ("minus" is "-" key ,and "plus" is "+" key)
+
+- screenshot (full screen)  `Super`+`PrtSc`
+
+    "PrtSc" is "PrintScreen" key , need `scrot`.
+
+- open filemanager  `Super`+`e` 
+
+    need `thunar`（e-explore）
+
+- close window  `Alt`+`F4` 
+
+- hide window and show the hide window `Super`+`minus` and `Super`+`plus` 
+
+    "minus" is "-" key ,and "plus" is "+" key. Here, in order to avoid confusion with +, the name is described in English.
 
 - change window style：
-  - `$mod+n`   with border and title bar (default , **n**ormal)
-  - `$mod+u`    without boder and title bar (**u**nnormal )
-  - `$mod+o`    one pixel boder and no title bar (**o**ne pixel border )
-  - `$mod+b`    change border style in above 3 styles（**b**order style)
+  - `Super`+`n`   with border and title bar (default , **n**ormal)
+  - `Super`+`u`    without boder and title bar (**u**nnormal )
+  - `Super`+`o`    one pixel boder and no title bar (**o**ne pixel border )
+  - `Super`+`b`    change border style in above 3 styles（**b**order style)
 
 - window tilling mode
 
-  - `$mod+s`    stack mode（**s**tack）
-  - `$mod+t`    tabbed mode（**t**abbed）
-  - `$mod+c`   **change** tile mode betwen horizontal mode and vertical mode (default ,**c**hange | or **c**arvel built :D ）。
+  - `Super`+`s`    stack mode（**s**tack）
+  - `Super`+`t`    tabbed mode（**t**abbed）
+  - `Super`+`c`   **change** tile mode betwen horizontal mode and vertical mode (default ,**c**hange | or **c**arvel built :D ）。
 
 - switch focus window
 
-   `$mod+h/j/k/l ` or `$mod`+ arrow keys
+   `Super`+`h` or `j` or `k` or `l`
+    or
+    `Super`+arrow keys
 
 - move focus window (tiling style)
 
-  `$mod+Shift+h/j/k/l` or `$mod+shift`+ arrow keys
+  `Super`+`Shift`+`h` or `j` or `k` or `l`
+  or
+  `Super`+`Shift`+ arrow keys
 
 - separate window
-  - `$mod+v`    vertical mode (**v**ertical)
-  - `$mod+Shift+h`   horizon mode (default , **h**orizon)
+  - `Super`+`v`    vertical mode (**v**ertical)
+  - `Super`+`Shift`+`h`   horizon mode (default , **h**orizon)
 
 - workspace switching
 
 
-  -  `$mod+tab`  -- next
-  -  `alt+tab`  -- previous
+  -  `Super`+`tab`  -- next
+  -  `Alt`+`tab`  -- previous
 
 -  reload and restart i3wm
 
-     -  `$Mod+Shift+s`  -- reload i3wm config
-     -  `$Mod+Shift+r`  -- restart i3wm
+     -  `Super`+`Shift`+`s`  -- reload i3wm config
+     -  `Super`+`Shift`+`r`  -- restart i3wm
 
--  lock/poweroff/rebot/exit menu : `$mod+Shift+q` it will show a message ,then press
+-  lock/poweroff/rebot/exit menu : `Super`+`Shift`+`q` it will show a message ,then press
 
 
   - `l`  -- lock screen
@@ -117,7 +155,7 @@ List some shortcut keys that have been changed.
 
     - `Fn` and brightness key （need a power manager tool , recommend `mate-power-manager`)
 
-  tip: maybe `fn` is not necessary.
+  tip: maybe `Fn` is not necessary.
 
 ## wallpaper and lock screen
 - wallpaper
@@ -130,7 +168,7 @@ List some shortcut keys that have been changed.
 - lock screen
 
   - background path :  `~/Pictures/wallpaper/lock/lock.jpg`
-  - lock : `$mod+alt+l` 
+  - lock : `Super`+`Alt`+`l` 
   - unlock : input your user password , then press "Enter" key .
 
 
@@ -155,7 +193,7 @@ see more info about power management:
 
 If you want a transparent background terminal , need install a  compositor such as  `xcompmgr` (or `compton`  .etc )  .  I recommend some terminal emulators are easy to set a transparent background :`roxterm` , `xfce4-terminal` , `terminator` .
 
-Install a terminal emulator , select one from the list below,  `$mod+Return` will start terminal , It tries to start one of the following (in that order, see [i3wm-termial](http://jlk.fjfi.cvut.cz/arch/manpages/man/i3-sensible-terminal.1)):
+After press terminal shortcut,  It tries to start one of the following (in that order, see [i3wm-termial](http://jlk.fjfi.cvut.cz/arch/manpages/man/i3-sensible-terminal.1)):
 
 >$TERMINAL (this is a non-standard variable)
 >
@@ -233,13 +271,17 @@ If it show `xrandr: command not found` , install `xorg-xrandr` , then excuted co
 
 # Other Tips
 
+- not found this package while installing
+
+  Maybe this package  is another name on your distribution. Using the fuzzy search in your pckage manger, also search the real name in this site https://pkgs.org.
+
 - emoji need a font such as `fonts-symbola ` (perhaps its name is `ttf-symbola`)
 
 
-- `pcmanfm` can not use Trash :  install `gvfs`
+- `thunar` /`pcmanfm` can not use Trash :  install `gvfs`
 - mount MTP divice or other removable disk : install `gvfs-mtp` or `libmtp`(see[archwiki:MTP](https://wiki.archlinux.org/index.php/MTP) )
-- change the theme : `lxappearance` (recommend)
-- font size is too small (or large) : use `lxappearance` for adjustings
+- change the window/icon/cursor theme or font : `lxappearance` (recommend)
+- notfity popup box: `xfce4-notifyd`
 - high DPI devices (see[archwiki:HIDPI](https://wiki.archlinux.org/index.php/HiDPI#X_Resources))
 
 edit `~/.Xresources` add (example) :

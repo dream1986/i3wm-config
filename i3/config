@@ -12,51 +12,42 @@ set $mod Mod4
 #exec --no-startup-id ibus
 #exec --no-startup-id megasync
 #exec --no-startup-id redshift
+#exec --no-startup-id blueman-applet
+#exec --no-startup-id ss-qt5
+
+#===programs shortcuts===
+
+# dmenu (a program launcher)
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+# terminal
+bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
+# xfce drop down terminal
+bindsym mod1+slash exec xfce4-terminal --drop-down
+
+# browsers--firefox chromium
+bindsym $mod+Shift+f exec firefox
+bindsym $mod+Shift+c exec chromium
+
+# printscreen--scrot(Print=PrtSc/PrintScreen)
+bindsym $mod+Print exec scrot
+
+# GUI file manager
+bindsym $mod+e exec --no-startup-id thunar 
+
+# app finder
+bindsym mod1+F2 exec --no-startup-id xfce4-appfinder 
+
+# bar toggle, hide or show 
+bindsym $mod+m bar mode toggle
 
 #===appearance===
-
-#---wallpaper---
-
-# static mode
-#exec --no-startup-id feh --bg-scale "~/Pictures/wallpapers/wallpaper.jpg"
-
-# random mode
-exec ~/.config/i3/wallpaper.sh &
-
-# font
-font pango:monospace 14
-
-#---bar---
-
-bar {
-    status_command i3status
-    position top
-    mode hide
-    workspace_buttons yes
-    output eDP1
-    tray_output primary
-    tray_padding 0
-    separator_symbol "|"
-
-    colors {
-    background #285477
-    statusline #dedede
-    separator #2d2d2d
-    focused_workspace #636e88 #285de7 #dedfdg
-    active_workspace #556677 #234567 #56ef67
-    inactive_workspace #636d72 #2d2d2d #dedede
-    urgent_workspace #ffffff #900000 #d23d32
-    }
-}
-
-# tray icons(eDP1 is the display device's name,use the command "xrandr" to see.)
-exec --no-startup-id xrandr --output eDP1 --primary
-
-# external display device(use the command "xrandr" to see the display device name)
-#exec --no-startup-id xrandr --output HDMI1 1920*1080 --right-of eDP1
-
-
 #---window style---
+
+# window gap
+gaps inner 8
+gaps outer 5
+smart_gaps on
 
 # new window
 new_window none
@@ -77,6 +68,7 @@ for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 
 # float programs(find the programs'names in "/usr/share/applictions")
+for_window [class="Xfce4-terminal"] floating enable
 for_window [class="Gpicview"] floating enable
 for_window [class="mpv"] floating enable
 for_window [class="Gimp"] floating enable
@@ -84,27 +76,55 @@ for_window [class="Xarchiver"] floating enable
 for_window [class="Genymotion"] floating enable
 for_window [class="Vlc"] floating enable
 for_window [class="VirtualBox"] floating enable
+for_window [class="Thunar"] floating enable
 for_window [class="shadowsocks-qt5"] floating enable
+for_window [class="Catfish"] floating enable
+for_window [class="Xfce4-appfinder"] floating enable
 
 
-#===programs shortcuts===
+#---wallpaper---
 
-# dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+# static mode
+#exec --no-startup-id feh --bg-scale "~/Pictures/wallpapers/wallpaper.jpg"
 
-# terminal
-bindsym $mod+Return exec i3-sensible-terminal
+# random mode
+exec --no-startup-id  ~/.config/i3/wallpaper.sh &
 
-# browsers--firefox chromium
-bindsym $mod+Shift+f exec firefox
-bindsym $mod+Shift+c exec chromium
+# font
+font pango:monospace 14
 
-# printscreen--scrot(Print=PrtSc/PrintScreen)
-bindsym $mod+Print exec scrot
+#---bar---
 
-# GUI file manager--pcmanfm
-bindsym $mod+e exec --no-startup-id pcmanfm
+bar {
+#    status_command i3status -c ~/.config/i3/i3status.conf
+    status_command i3blocks -c ~/.config/i3/i3blocks.conf
 
+    position top
+    mode hide
+    workspace_buttons yes
+    #output eDP1
+    #tray_output primary
+    tray_padding 0
+    separator_symbol "|"
+
+    colors {
+    background #285477
+    statusline #dedede
+    separator #2d2d2d
+    focused_workspace #636e88 #285de7 #dedfdg
+    active_workspace #556677 #234567 #56ef67
+    inactive_workspace #636d72 #2d2d2d #dedede
+    urgent_workspace #ffffff #900000 #d23d32
+    }
+    
+#height 30
+}
+
+# tray icons(eDP1 is the display device's name,use the command "xrandr" to see.)
+exec --no-startup-id xrandr --output eDP1 --primary
+
+# external display device(use the command "xrandr" to see the display device name)
+#exec --no-startup-id xrandr --output HDMI1 1920*1080 --right-of eDP1
 
 #===workspace control===
 
@@ -115,8 +135,8 @@ bindsym $mod+e exec --no-startup-id pcmanfm
 #workspace "9:Mail" output eDP1
 
 # putting clients on specific workspaces
-assign [class="Chromium"] 0
-assign [class="code"] 0
+assign [class="Chromium"] 1
+assign [class="code"] 3
 
 
 #---switch workspace---
@@ -276,7 +296,7 @@ bindsym $mod+Shift+s restart
 
 # i3lock
  mode "i3lock: Return to lock/Escape to Cancel" {
-            bindsym Return mode "default" exec i3lock -I 600 -i ~/Pictures/wallpaper/lock.jpg
+            bindsym Return mode "default" exec i3lock -I 600 -i ~/Pictures/lock.jpg
             bindsym Escape mode "default"
     }
 
