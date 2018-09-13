@@ -10,38 +10,40 @@
 
 - base
 
-  -  `i3` : in some distros, `i3` is a group name, it contains i3 wm and other compoents, `i3-wm` , `i3-gaps`, `i3block` , `i3lock`and`i3status`, and in other distros, `i3` may be only window manager(wm). (you can search keywords in [pkgs.org](https://pkgs.org))
-  -  a terminal  (see [terminal](#terminal), select a terminal emulator ) 
-  -  `dmenu`  -- a generic menu for X (like a applications launcher)
-  -  `feh`  -- image viewer , for display wallpaper
+  -  `i3` : in some distributions,  `i3`  may be a  package-group name, that contains i3 wm and other components,  `i3-wm` ,  `i3-gaps`,  `i3block` ,  `i3lock`and`i3status`. And in some distributions,  `i3` may only refer to `i3wm`. (you can search keywords on [pkgs.org](https://pkgs.org) to determine the package name.)
+  -  Suitable terminal (see [terminal](#terminal), select a terminal emulator ) 
+  -  `dmenu`  Applications launcher
+  -  `feh`   image viewer , show wallpaper
 
 - optional
 
-  - `xcompmgr`   --  terminal transparent
+  - `xcompmgr`   Set terminal transparency
 
-  - `scrot`  -- for screeshot (this configuration added shortcut for scrot)
+  - `scrot`  Screeshot (this configuration added shortcut for scrot)
 
-  - `thunar` or `pcmanfm`  -- a gui file manager
+  - `thunar` or `pcmanfm`   GUI file manager
 
    - for `networkmanager` user
-      - `nm-connection-editor`   -- networkmanager GUI
-      - `nm-applet`  -- networkmanager's tray icon
+      - `nm-connection-editor`  Networkmanager GUI
+      - `nm-applet`  Networkmanager's tray icon
 
-  - `blueman`  bluetooth gui tool
+  - `blueman`  Bluetooth gui tool
 
-      include a applet `blueman-applet`
+      The attached tray tool is named `blueman-applet`
 
-  - `mate-power-manager`  -- power manager tool
+  - `mate-power-manager`  Power manager tool
 
-  - `alsa-utils`  -- adjust volume
+  - `alsa-utils`  Sound management
 
-  - `xfce4-appfinder`   an application finder
+  - `xfce4-appfinder`  Quickly search for the program's launcher
 
 ## configure i3
 
-- Downlod this config and extra ,  put `i3` and `i3status` in`~/.config/` , put `Pictures`(contains some sample wallpapers) in home folder (`~/`).If you want display tray icon , Perhaps you should read the chapter -- ["tray icons"](#tray icons).
+- Downlod this config and extra it,  put `i3` and `i3status` in the `~/.config/` , and put `Pictures`(including some sample wallpapers) in the current user's home directory (`~/`). 
 
-  optional: exec `config-en.sh` for some basic configuration.
+  If you need to display the tray icon, you may need to refer to the following section of the [tray Icons](#tray Icons) for configuration.
+
+  A simple initial configuration can be done using the script `config-zh.sh`. 
 
 or 
 
@@ -51,32 +53,29 @@ or
   curl -# -L -o i3.zip https://github.com/levinit/i3wm-config/archive/master.zip && unzip i3.zip && cd i3wm-config-master && unzip Pictures.zip && cp -r i3 ~/.config && cp -r Pictures ~/ && chmod +x *.sh && ./config.sh
   ```
 
-If it show `xrandr: command not found` , install `xorg-xrandr` , then excute commands above again.
+If it show `xrandr: command not found` ,  you need to install `xorg-xrandr` , then execute the above command again.
 
 # Introductions for the configs
 
-some info about these config files.
-
-
+Some important notes about this configuration.
 
 ## shortcuts
-In configuration, `$mod key` is `Mod4`，**Generally** ,it is "Windows logo" key  or "Super" key, `Alt` is `mod1`, Enter is `Return`.
 
-Tip:Install `xorg-xev`, exec command `xev` in terminal, then press key, it will show the name.
+In this configuration,  `$mod key` is `Mod4`，**Generally** , it is "Windows logo" key  or "Super" key,  `Alt` is `mod1`, Enter is `Return`.
+
+Tip: Install `xorg-xev`, exec command `xev` in the terminal, then press any key, it will show the key's name.
 
 - `Super`+`d`  dmenu
-- `Super`+`Enter`  open default [terminal](#terminal)
+- `Super`+`Enter`  open the default [terminal](#terminal)
 
 For other i3wm default shortcuts , see the  **i3wm related documentation** or view the config file.
 
 ---
 
+The following are the custom shortcuts in this configuration file (Reference vim and windows usage habits).
 
-
-The following are the custom shortcuts in this configuration file(Reference vim and windows usage habits).
-
-- `Super`  temporary display the i3bar
-- `Super`+`m`  toggle i3bar show/hideen mode
+- `Super`  Temporarily display i3bar (will be hidden after releasing the `Super` key) 
+- `Super`+`m`  switch i3bar show/hideen mode
 
 - xfce dropdown terminal  `Alt`+`/`
 
@@ -191,9 +190,9 @@ see more info about power management:
 
 ## terminal
 
-If you want a transparent background terminal , need install a  compositor such as  `xcompmgr` (or `compton`  .etc )  .  I recommend some terminal emulators are easy to set a transparent background :`roxterm` , `xfce4-terminal` , `terminator` .
+If you want a transparent background terminal , need to install  `xcompmgr` (or `compton`  .etc )  . It is recommended to select terminals that are more convenient to set transparency, such as `roxterm` , `xfce4-terminal` and `terminator` .
 
-After press terminal shortcut,  It tries to start one of the following (in that order, see [i3wm-termial](http://jlk.fjfi.cvut.cz/arch/manpages/man/i3-sensible-terminal.1)):
+After press terminal shortcut,  It tries to start one of the following in the order(see [i3wm-termial](http://jlk.fjfi.cvut.cz/arch/manpages/man/i3-sensible-terminal.1)):
 
 >$TERMINAL (this is a non-standard variable)
 >
@@ -294,9 +293,11 @@ edit `~/.Xresources` add (example) :
 >Xft.antialias: 1
 >Xft.rgba: rgb
 
-144 is dpi (adjust according to the actual display situation).Then edit`~/.xinitrc` , add :
+144 is dpi (adjust according to the actual display situation). Then edit`~/.xinitrc` , add :
 
 >xrdb -merge ~/.Xresources
+
+Of course, the text under the high screen is too small, you can also adjust the font size (you can use lxappearance).
 
 - turn off waring sound（alarm sound/beep sound）
   see[PC speaker](https://wiki.archlinux.org/index.php/PC_speaker) 

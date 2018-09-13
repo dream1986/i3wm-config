@@ -9,18 +9,19 @@
 ## 安装软件
 
 - 基本
-  - `i3 `：某些发行版中`i3`可能为一个包组名，它包含i3窗口管理器和其他组件，`i3-wm` 、 `i3-gaps`、 `i3block` 、 `i3lock`和`i3status`，另一些发行版中`i3`也可能仅为wm部分。（可在[pkgs.rog](https://pkgs.org)搜索关键字以确定包名）
+  - `i3 `：某些发行版中`i3`可能为一个包组名，它包含i3窗口管理器和其他组件，`i3-wm` 、 `i3-gaps`、 `i3block` 、 `i3lock`和`i3status`，另一些发行版中`i3`可能仅仅指`i3wm`。（可在[pkgs.rog](https://pkgs.org)搜索关键字以确定包名）
   - 适合的终端（参照下文[终端](#终端) 选择一个终端）
   - `dmenu`  程序启动器
-  - `feh`  设置壁纸
+  - `feh`  图片浏览器，展示壁纸
 - 可选
   - `xcompmgr` 终端透明
 
   - `scrot`   截屏（本配置使用的截屏快捷键调用此工具）
 
-  - `thunar`或`pcmanfm`    文件管理器
+  - `thunar`或`pcmanfm`    图形界面文件管理器
 
   - `networkmanager`用户
+
     - `nm-connection-editor`  图形界面的联网管理工具
     - `nm-applet`（或名`network-manager-applet`）托盘图标
 
@@ -38,7 +39,7 @@
 
 - 下载本配置文件并解压，将i3和i3status放于`~/.config/`目录，将`Pictures`（包含几张示例壁纸）放于当前用户家目录下（即`~/`下）。
 
-  如果需要显示托盘图标，可能需要参考后面[托盘图标](#托盘图标)一小节的内容进行相关配置。
+  如果需要显示托盘图标，可能需要参考后面[托盘图标](#托盘图标)一小节的内容进行配置。
 
   可使用脚本`config-zh.sh`进行简单的初始配置。
 
@@ -51,7 +52,7 @@
   curl -# -L -o i3.zip https://github.com/levinit/i3wm-config/archive/master.zip && unzip i3.zip && cd i3wm-config-master && unzip Pictures.zip && cp -r i3 ~/.config && cp -r Pictures ~/ && chmod +x *.sh && ./config-zh.sh
   ```
 
-如果提示`xrandr: command not found`，则需要先安装`xorg-xrandr`在执行上述命令。
+如果提示`xrandr: command not found`，则需要先安装`xorg-xrandr`再执行上述命令。
 
 # 本配置的说明
 
@@ -64,7 +65,7 @@
 - `Super`+`d`  dmenu
 - `Super`+`Enter`  打开默认 [终端](#终端)
 
-其他i3wm的快捷键请参阅i3wm相关文档或查看config文件。
+其他默认的i3wm的快捷键请参阅i3wm相关文档或查看config文件。
 
 ---
 
@@ -183,10 +184,9 @@
 - [linux笔记本相关](https://github.com/levinit/itnotes/blob/master/linux/laptop%E7%AC%94%E8%AE%B0%E6%9C%AC%E7%9B%B8%E5%85%B3.md)
 - [挂起、睡眠和休眠](https://wiki.archlinux.org/index.php/Suspend_hybrid-sleep_and_hibernate_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87))
 
-
 ## 终端
 
-如果需要终端背景透明的要过，需要安装xcompmgr（或者compton）。推荐选择可以较为方便设置透明度的终端如roxterm、xfce-terminal和terminator。
+如果需要终端背景透明的效果，需要安装xcompmgr（或者compton）。推荐选择可以较为方便设置透明度的终端，如roxterm、xfce-terminal和terminator。
 
 按下终端启动快捷键后，它会试图按以下顺序一一执行，直到成功启动某虚拟终端（参看 [i3wm-termial](http://jlk.fjfi.cvut.cz/arch/manpages/man/i3-sensible-terminal.1)）： 
 
@@ -291,7 +291,7 @@ sed -i 's/eDP1/'"$name"'/' ~/.config/i3/config
   > Xft.antialias: 1
   > Xft.rgba: rgb
 
-  其中第一行的Xft.dpi: 144就是dpi，根据实际情况调整大小。 保存该文件，然后在~/.xinitrc写入。
+  144就是dpi，根据实际情况调整大小。 保存该文件，然后编辑~/.xinitrc，加入：
 
   > xrdb -merge ~/.Xresources
 
