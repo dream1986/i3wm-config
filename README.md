@@ -31,6 +31,8 @@
 
   - `mate-power-manager`  电源管理工具
 
+  - `acpi`  电源配置接口工具(用于显示电池信息)
+
   - `alsa-utils`   声音管理
 
   - `xfce4-appfinder`   可以快速搜索程序的启动器
@@ -75,7 +77,7 @@
 
 - 切换i3bar显示或隐藏模式  `Super`+`m`
 
-- xfce下拉终端  `Alt`+`/` 
+- xfce下拉终端  `Alt`+`/`
 
   前提是默认终端为xfce4-terminal
 
@@ -109,12 +111,12 @@
   - `Super`+`c`  在垂直平铺和水平平铺之间来回切换（默认，c-change）
 
 - 切换焦点窗口
-  `Super`+`h`或`j`或`k`或`l` 
+  `Super`+`h`或`j`或`k`或`l`
   或者
   `Super`+上下左右箭头
 
 - 移动焦点窗口（平铺模式）
-  `Super`+`Shift`+`h`或`j`或`k`或`l` 
+  `Super`+`Shift`+`h`或`j`或`k`或`l`
   或者
   `Super`+`Shift`+`上下左右箭
 
@@ -188,7 +190,7 @@
 
 如果需要终端背景透明的效果，需要安装xcompmgr（或者compton）。推荐选择可以较为方便设置透明度的终端，如roxterm、xfce-terminal和terminator。
 
-按下终端启动快捷键后，它会试图按以下顺序一一执行，直到成功启动某虚拟终端（参看 [i3wm-termial](http://jlk.fjfi.cvut.cz/arch/manpages/man/i3-sensible-terminal.1)）： 
+按下终端启动快捷键后，它会试图按以下顺序一一执行，直到成功启动某虚拟终端（参看 [i3wm-termial](http://jlk.fjfi.cvut.cz/arch/manpages/man/i3-sensible-terminal.1)）：
 
 >$TERMINAL (this is a non-standard variable)
 >

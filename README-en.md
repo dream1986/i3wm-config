@@ -33,6 +33,8 @@
 
   - `mate-power-manager`  Power manager tool
 
+  - `acpi`  Advanced Configuration and Power Interface (display battery info)
+
   - `alsa-utils`  Sound management
 
   - `xfce4-appfinder`  Quickly search for the program's launcher
